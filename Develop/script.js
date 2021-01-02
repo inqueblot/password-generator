@@ -1,70 +1,84 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-function upperCaseChars() {
-  return String.fromCharCode(65 + Math.floor(Math.random() * 26));
-}
-function symbolChars() {
-  var symbols = "!@#$%^&*()[]{}/,.?";
-  return symbols[Math.floor(Math.random() * symbols.length)]
-}
-
-console.log(symbolChars())
-
-
-
 // Write password to the #password input
 function writePassword() {
-  var passwordLength = prompt('please enter a number between 8-128', '8-128');
-  //var lowerCase = confirm('Does the password need to contain a lowercase letter?');
-  var upperCase = confirm('Does the password need to contain upper case letters?')
-
-  var lowerCaseChars = String.fromCharCode(97 + Math.floor(Math.random() * 26));
-  var numberChars = String.fromCharCode(48 + Math.floor(Math.random() * 10));
-
-
-  console.log(symbolChars)
-  //not my code
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-
-
-
-
-
-  function generatePassword() {
-    var length = passwordLength;
-    retVal = "";
-    // let charset = lowerCaseChars;
-    // if (upperCase == true) charset.concat(upperCaseChars);
-
-    for (var i = 0, n = charset.length; i < length; i++) {
-      retVal += charset.charAt(Math.floor(Math.random() * n));
-    }
-    return retVal
-
-  }
 
 }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
-// prompt to ask length of password
+//code to create alert prompts and create password
+const passwordLength = Number(prompt("How many character's is your password?", "8-128"));
+const checkLower = confirm("Does this password contain a lowercase letter?");
+const checkUpper = confirm("Does this password contain a uppercase letter?");
+const checkNumber = confirm("Does this password contain a number?");
+const checkSpecial = confirm("Does this password contain a special character?");
+
+//console.log(typeof passwordLength);
+
+let random = '';
+
+for (let index = 0; index < passwordLength; index++) {
+  while (random.length < passwordLength) {
 
 
-// 
+    if (checkLower == true) {
+      random += lowerCaseChars()
+    };
 
-// const upperCase = confirm('Does the password need to contain a uppercase letter?')
+    if (checkUpper == true) {
+      random += upperCaseChars()
+    };
 
-// const numCharacter = confirm('Does the password need to contain a number?')
+    if (checkNumber == true) {
+      random += numberChars()
+    };
 
-// const specCharacter = confirm('does the password need to contain a special character?')
+    if (checkSpecial == true) {
+      random += symbolChars()
+    };
 
-// const Characters = [a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z]
 
-console.log(String.fromCharCode(65 + Math.floor(Math.random() * 26)))
+  }
 
-console.log(String.fromCharCode(97 + Math.floor(Math.random() * 26)))
+  var lessRandom = random.slice(0, passwordLength)
+
+  function shuffle() {
+    var arr = lessRandom.split('');           // Convert String to array
+
+    arr.sort(function () {
+      return 0.5 - Math.random();
+    });
+    moreRandom = arr.join('');                // Convert Array to string
+    return moreRandom;                        // Return shuffled string
+  }
+}
+
+shuffle()
+
+
+console.log(random)
+console.log(lessRandom)
+console.log(moreRandom)
+
+function lowerCaseChars() {
+  return String.fromCharCode(97 + Math.floor(Math.random() * 26));
+}
+
+function upperCaseChars() {
+  return String.fromCharCode(65 + Math.floor(Math.random() * 26));
+}
+function symbolChars() {
+  var symbols = "!@#$%^&*()[]{}/,.?"; //check symbols to OWASP
+  return symbols[Math.floor(Math.random() * symbols.length)]
+}
+
+function numberChars() {
+  return (Math.floor(Math.random() * 10));
+}
