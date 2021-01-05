@@ -103,8 +103,9 @@ function upperCaseChars() {
   return String.fromCharCode(65 + Math.floor(Math.random() * 26));
 }
 function symbolChars() {
-  var symbols = " !#$%&'()*+,-./:;<=>?@[]\^_`{|]~"; //check symbols to OWASP
-  return symbols[Math.floor(Math.random() * symbols.length)]
+  console.log(symbols = "\" !#$%&'()*+,-./:;<=>?@[]^_`{|}]~\\"); //check symbols to OWASP
+  return symbols[Math.floor(Math.random() * symbols.length)];
+
 }
 
 function numberChars() {
