@@ -9,6 +9,27 @@ function writePassword() {
   const checkNumber = confirm("Does this password contain a number?");
   const checkSpecial = confirm("Does this password contain a special character?");
 
+  console.log(checkLower)
+
+  if (Boolean(checkLower || checkUpper || checkNumber || checkSpecial) === false) {
+    alert('please choose at least one character requirement.');
+    return;
+  }
+
+  if (passwordLength == null) {
+    alert('please select a number between 8-128');
+    return;
+  }
+
+  //console.log(passwordLength)
+
+  if (passwordLength > 128 | passwordLength < 8) {
+    alert('please select a number between 8-128');
+    return;
+  }
+
+
+
   //console.log(typeof passwordLength);
 
   let random = '';
@@ -34,6 +55,7 @@ function writePassword() {
       };
 
 
+
     }
 
     var lessRandom = random.slice(0, passwordLength)
@@ -51,7 +73,7 @@ function writePassword() {
 
   shuffle()
   var password = moreRandom;
-  var passwordText = document.querySelector("moreRandom");
+  var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
 
