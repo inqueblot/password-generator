@@ -3,59 +3,53 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  const passwordLength = Number(prompt("How many character's is your password?", "8-128"));
-  const checkLower = confirm("Does this password contain a lowercase letter?");
-  const checkUpper = confirm("Does this password contain a uppercase letter?");
-  const checkNumber = confirm("Does this password contain a number?");
-  const checkSpecial = confirm("Does this password contain a special character?");
+  const passwordLength = (prompt("How many character's is your password?", "8-128"));
 
-  console.log(checkLower)
-
-  if (Boolean(checkLower || checkUpper || checkNumber || checkSpecial) === false) {
-    alert('please choose at least one character requirement.');
-    return;
-  }
-
+  //validate user has provided necessary input 
   if (passwordLength == null) {
     alert('please select a number between 8-128');
     return;
   }
-
-  //console.log(passwordLength)
 
   if (passwordLength > 128 | passwordLength < 8) {
     alert('please select a number between 8-128');
     return;
   }
 
+  const checkLower = confirm("Does this password contain a lowercase letter?");
+  const checkUpper = confirm("Does this password contain a uppercase letter?");
+  const checkNumber = confirm("Does this password contain a number?");
+  const checkSpecial = confirm("Does this password contain a special character?");
 
 
-  //console.log(typeof passwordLength);
+  //validate user has provided necessary input
+  if ((checkLower || checkUpper || checkNumber || checkSpecial) === false) {
+    alert('please choose at least one character requirement.');
+    return;
+  }
 
   let random = '';
 
+  //for loop to create password
   for (let index = 0; index < passwordLength; index++) {
     while (random.length < passwordLength) {
 
 
       if (checkLower == true) {
         random += lowerCaseChars()
-      };
+      }
 
       if (checkUpper == true) {
         random += upperCaseChars()
-      };
+      }
 
       if (checkNumber == true) {
         random += numberChars()
-      };
+      }
 
       if (checkSpecial == true) {
         random += symbolChars()
-      };
-
-
-
+      }
     }
 
     var lessRandom = random.slice(0, passwordLength)
@@ -76,24 +70,10 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-
-  console.log(random)
-  console.log(lessRandom)
-  console.log(moreRandom)
-
 }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
-//code to create alert prompts and create password
-
-
-
-
-
-
-
 
 function lowerCaseChars() {
   return String.fromCharCode(97 + Math.floor(Math.random() * 26));
@@ -103,9 +83,8 @@ function upperCaseChars() {
   return String.fromCharCode(65 + Math.floor(Math.random() * 26));
 }
 function symbolChars() {
-  console.log(symbols = "\" !#$%&'()*+,-./:;<=>?@[]^_`{|}]~\\"); //check symbols to OWASP
+  var symbols = "\" !#$%&'()*+,-./:;<=>?@[]^_`{|}]~\\"; //check symbols to OWASP
   return symbols[Math.floor(Math.random() * symbols.length)];
-
 }
 
 function numberChars() {
