@@ -21,6 +21,10 @@ This app was created to generate a pseudo random password using user inputs.
 
 - The password generated is pseudo random and should not be used for actual security purposes.
 
+- Special Characters include all characters listed by [OWASP](https://owasp.org/www-community/password-special-characters) as of Jan 2021.
+
+## Links
+---
 
 [Deployed Application](https://inqueblot.github.io/password-generator/)
 
