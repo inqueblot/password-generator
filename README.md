@@ -5,6 +5,12 @@
 
 This app was created to generate a pseudo random password using user inputs.
 
+
+
+
+
+![example of website](Images\Website.PNG)
+
 ## Features
 ---
 - The generator prompt the user to select a length of 8-128 characters.
