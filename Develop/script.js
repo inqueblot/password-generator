@@ -1,6 +1,23 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
+//creates random letter(upper,lower, number and special character)
+function lowerCaseChars() {
+  return String.fromCharCode(97 + Math.floor(Math.random() * 26));
+}
+
+function upperCaseChars() {
+  return String.fromCharCode(65 + Math.floor(Math.random() * 26));
+}
+function symbolChars() {
+  var symbols = "\" !#$%&'()*+,-./:;<=>?@[]^_`{|}]~\\"; //check symbols to OWASP
+  return symbols[Math.floor(Math.random() * symbols.length)];
+}
+
+function numberChars() {
+  return (Math.floor(Math.random() * 10));
+}
+
 // Write password to the #password input
 function writePassword() {
   const passwordLength = (prompt("How many character's is your password?", "8-128"));
@@ -63,9 +80,11 @@ function writePassword() {
       moreRandom = arr.join('');                // Convert Array to string
       return moreRandom;                        // Return shuffled string
     }
+
+    shuffle()
   }
 
-  shuffle()
+
   var password = moreRandom;
   var passwordText = document.querySelector("#password");
 
@@ -74,19 +93,3 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
-function lowerCaseChars() {
-  return String.fromCharCode(97 + Math.floor(Math.random() * 26));
-}
-
-function upperCaseChars() {
-  return String.fromCharCode(65 + Math.floor(Math.random() * 26));
-}
-function symbolChars() {
-  var symbols = "\" !#$%&'()*+,-./:;<=>?@[]^_`{|}]~\\"; //check symbols to OWASP
-  return symbols[Math.floor(Math.random() * symbols.length)];
-}
-
-function numberChars() {
-  return (Math.floor(Math.random() * 10));
-}
